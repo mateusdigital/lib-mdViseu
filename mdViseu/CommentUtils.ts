@@ -4,6 +4,7 @@ import * as fs from "fs";
 import * as JSON5 from "json5";
 import * as path from "path";
 import * as vscode from "vscode";
+import { ErrorUtils } from "./ErrorUtils";
 
 export class CommentInfo {
   public singleLineStart: string = "";
@@ -181,9 +182,12 @@ export class CommentUtils {
     let config: any = CommentUtils._GetLanguageInfo(languageId);
     if (!config) {
       switch (languageId) {
-        case "kotlin": { config = CommentUtils._GetLanguageInfo(languageId); break }
+        case "kotlin": { config = CommentUtils._GetLanguageInfo("java"); break }
+        case "plaintext": { config = CommentUtils._GetLanguageInfo("markdown"); break }
+        case "cmake": { config = CommentUtils._GetLanguageInfo("markdown"); break }
+
         default: {
-          // !TODO: log error...
+          ErrorUtils.LogError("Can't find language configuration for: " + languageId);
         } break;
       }
     }

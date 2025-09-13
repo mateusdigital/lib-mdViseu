@@ -11,6 +11,9 @@ import * as vscode from "vscode";
 
 
 export class ErrorUtils {
+  static LogError(...args: any[]) {
+    console.error(...args);
+  }
 
   public static ShowErrorToUser(message: string) {
     vscode.window.showErrorMessage(message);
