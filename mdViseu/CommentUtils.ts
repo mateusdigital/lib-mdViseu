@@ -1,3 +1,9 @@
+//----------------------------------------------------------------------------//
+//  File      : CommentUtils.ts                                               //
+//  Project   : lib-mdViseu                                                   //
+//  Date      : 2025-8-28                                                     //
+//  Copyright : mateusdigital <hello@mateus.digital>                          //
+//----------------------------------------------------------------------------//
 
 // -----------------------------------------------------------------------------
 import * as fs from "fs";
@@ -6,6 +12,8 @@ import * as path from "path";
 import * as vscode from "vscode";
 import { ErrorUtils } from "./ErrorUtils";
 
+
+// -----------------------------------------------------------------------------
 export class CommentInfo {
   public singleLineStart: string = "";
   public singleLineEnd: string = "";
@@ -47,7 +55,7 @@ export class CommentUtils {
     //
     let availableColumns = (maxColumns);
 
-    availableColumns -= ((!options.preferSingleLineComments)
+    availableColumns -= ((options.preferSingleLineComments)
       ? commentInfo.singleLineLength
       : commentInfo.multiLineLength);
 
@@ -195,7 +203,7 @@ export class CommentUtils {
     return config.comments;
   }
 
-  // -----------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   public static CreateCommentLine(
     editor: vscode.TextEditor,
     selectionColumn: number,
@@ -236,7 +244,6 @@ export class CommentUtils {
       = first_half.substring(0, 80 - second_half.length)
       + second_half;
 
-    console.log("comment_line", comment_line);
     return comment_line;
   }
 
@@ -258,7 +265,6 @@ export class CommentUtils {
     comment_header += spaceGap + middle + " " + selectedText + "\n";
     comment_header += spaceGap + end + "\n";
 
-    console.log("comment_header", comment_header);
     return comment_header;
   }
 }

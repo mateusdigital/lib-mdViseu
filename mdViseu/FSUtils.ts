@@ -7,6 +7,7 @@ export class FSUtils
   {
     const stats = fs.statSync(filename);
     const date  = stats.birthtime;
+
     return date;
   }
 }

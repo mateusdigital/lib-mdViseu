@@ -1,21 +1,28 @@
-//
-// Imports
-//
+//----------------------------------------------------------------------------//
+//  File      : ErrorUtils.ts                                                 //
+//  Project   : lib-mdViseu                                                   //
+//  Date      : 2025-8-28                                                     //
+//  Copyright : mateusdigital <hello@mateus.digital>                          //
+//----------------------------------------------------------------------------//
 
 // -----------------------------------------------------------------------------
-import * as fs from "fs";
-import * as JSON5 from "json5";
-import * as path from "path";
 import * as vscode from "vscode";
+import { DefaultLogger } from "./LogUtils";
 
 
 
+
+// -----------------------------------------------------------------------------
 export class ErrorUtils {
+
+  // ---------------------------------------------------------------------------
   static LogError(...args: any[]) {
-    console.error(...args);
+    DefaultLogger.error(...args);
   }
 
+  // ---------------------------------------------------------------------------
   public static ShowErrorToUser(message: string) {
     vscode.window.showErrorMessage(message);
+    ErrorUtils.LogError(message);
   }
 }
